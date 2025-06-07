@@ -66,25 +66,31 @@
 
         .text-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
             pointer-events: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
-        iframe {
+        video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
 
         .mans {
@@ -101,6 +107,7 @@
             text-shadow: 2px 2px 4px #000;
             font-style: italic;
             line-height: 1.4;
+            text-align: center;
         }
 
         .button-container {
@@ -137,7 +144,6 @@
 
 <body>
     <div class="card" id="card">
-  
         <div class="front">
             <div class="front-text">
                 <h2>Bisola,</h2>
@@ -145,11 +151,8 @@
             </div>
         </div>
 
-
         <div class="back">
-            <iframe
-                src="ssstik.io_1749328157769.MP4"
-                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <video id="video" src="ssstik.io_1749328157769.MP4" autoplay loop playsinline></video>
             <div class="text-container">
                 <h6 class="mans">Will You Be My Girlfriend, Bisola? 💖</h6>
                 <p class="pap">
@@ -168,10 +171,22 @@
     </div>
 
     <script>
-        document.getElementById('toggleButton').addEventListener('click', function () {
-            const card = document.getElementById('card');
-            card.classList.toggle('flipped');
-            this.textContent = card.classList.contains('flipped') ? 'Close Card ❤❤' : 'Open Card ❤️';
+        const card = document.getElementById('card');
+        const btn = document.getElementById('toggleButton');
+        const video = document.getElementById('video');
+        const contain = document.querySelector('.text-container')
+
+        btn.addEventListener('click', () => {
+            const flipped = card.classList.toggle('flipped');
+            btn.textContent = flipped ? 'Close Card ❤❤' : 'Open Card ❤️';
+
+            if (flipped) {
+                video.play();
+                contain.style.display = 'flex'
+            } else {
+                video.pause();
+                contain.style.display = 'none'
+            }
         });
     </script>
 </body>
