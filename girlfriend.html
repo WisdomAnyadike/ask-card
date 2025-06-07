@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To my Love</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        .card {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            aspect-ratio: 3/4;
+            margin: 30px auto;
+            border: 10px solid pink;
+            box-shadow: inset 10px 0 15px rgba(0, 0, 0, 0.1);
+            background-color: #e6f0e6;
+            perspective: 1000px;
+        }
+
+        .front,
+        .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .front {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transform: rotateY(0deg);
+            text-align: center;
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            overflow: hidden;
+        }
+
+        .card.flipped .front {
+            transform: rotateY(180deg);
+        }
+
+        .card.flipped .back {
+            transform: rotateY(0deg);
+        }
+
+        .front-text h2,
+        .front-text p {
+            margin: 0;
+            padding: 0.5em;
+            font-family: 'Nobile', sans-serif;
+            color: purple;
+        }
+
+        .text-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            pointer-events: none;
+        }
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .mans {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 0.5em;
+        }
+
+        .pap {
+            font-size: 1em;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #toggleButton {
+            padding: 10px 20px;
+            background-color: purple;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        @media (max-width: 600px) {
+            .mans {
+                font-size: 1em;
+            }
+
+            .pap {
+                font-size: 0.9em;
+            }
+
+            #toggleButton {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card" id="card">
+        <!-- Front side -->
+        <div class="front">
+            <div class="front-text">
+                <h2>Bisola,</h2>
+                <p>There’s something I’ve been wanting to ask you...</p>
+            </div>
+        </div>
+
+        <!-- Back side with YouTube embed (love song + video) -->
+        <div class="back">
+            <iframe
+                src="https://www.youtube.com/embed/Ip6cw8gfHHI?autoplay=1&mute=1&loop=1&playlist=PLgzTt0k8mXzE6H9DDgiY7Pd8pKZteis48&controls=0&showinfo=0&modestbranding=1"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <div class="text-container">
+                <h6 class="mans">Will You Be My Girlfriend, Bisola? 💖</h6>
+                <p class="pap">
+                    From the moment I met you, your warmth, kindness, and laughter have brightened all my days.<br><br>
+                    Every conversation with you feels like sunshine, and every smile you share makes my heart skip a
+                    beat. Today, I find myself wishing for more moments by your side.<br><br>
+                    <b>Bisola, will you make me the happiest person alive and be my girlfriend?</b><br><br>
+                    I promise to always cherish you, support you, and make you feel as special as you make me feel.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button id="toggleButton">Open Card ❤️</button>
+    </div>
+
+    <script>
+        document.getElementById('toggleButton').addEventListener('click', function () {
+            const card = document.getElementById('card');
+            card.classList.toggle('flipped');
+            this.textContent = card.classList.contains('flipped') ? 'Close Card ❤❤' : 'Open Card ❤️';
+        });
+    </script>
+</body>
+
+</html>
